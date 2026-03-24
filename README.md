@@ -60,12 +60,17 @@ A personal blog and video platform built with Next.js and Payload CMS.
 | `npm run dev` | Start dev server with Turbo |
 | `npm run build` | Production build |
 | `npm run start` | Start production server |
+| `npm test` | Run all tests (unit + E2E) |
+| `npm run test:unit` | Run Vitest unit tests |
+| `npm run test:e2e` | Run Playwright E2E tests |
+| `npm run test:e2e:ui` | Run Playwright E2E with interactive UI |
 | `npm run generate:types` | Regenerate Payload TypeScript types |
 | `npm run generate:importmap` | Regenerate Payload import map |
 
 ## Project Structure
 
 ```
+e2e/                     # Playwright E2E tests
 src/
 ├── app/
 │   ├── (frontend)/      # Public-facing pages (blog, videos, about)
@@ -74,7 +79,7 @@ src/
 ├── collections/         # Payload CMS collection definitions
 ├── globals/             # Payload CMS global definitions
 ├── components/          # React components
-└── lib/                 # Utilities
+└── lib/                 # Utilities (includes unit tests *.test.ts)
 ```
 
 ## License

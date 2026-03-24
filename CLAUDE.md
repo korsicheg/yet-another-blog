@@ -11,7 +11,17 @@ npm run generate:types   # Regenerate Payload CMS TypeScript types (src/payload-
 npm run generate:importmap # Regenerate Payload CMS import map
 ```
 
-No test runner is configured.
+## Testing
+
+```bash
+npm test                 # Run all tests (Vitest unit + Playwright E2E)
+npm run test:unit        # Vitest unit tests only (src/**/*.test.ts)
+npm run test:e2e         # Playwright E2E tests only (e2e/*.spec.ts)
+npm run test:e2e:ui      # Playwright E2E with interactive UI
+```
+
+- Unit tests: `src/**/*.test.ts` — run with Vitest
+- E2E tests: `e2e/*.spec.ts` — run with Playwright (auto-starts dev server on port 3000)
 
 ## Architecture
 
