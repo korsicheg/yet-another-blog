@@ -1,13 +1,11 @@
+import type { WidgetServerProps } from 'payload'
 import { getTopPages } from '@/lib/analytics-queries'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 
-export default async function TopPagesWidget() {
-  const payload = await getPayload({ config })
-  const topPages = await getTopPages(payload, 30, 10)
+export default async function TopPagesWidget({ req }: WidgetServerProps) {
+  const topPages = await getTopPages(req.payload, 30, 10)
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="card" style={{ padding: '1rem' }}>
       <h4 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 600 }}>
         Top Pages (30 Days)
       </h4>

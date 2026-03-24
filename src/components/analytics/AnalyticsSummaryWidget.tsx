@@ -1,14 +1,12 @@
+import type { WidgetServerProps } from 'payload'
 import { getAnalyticsSummary } from '@/lib/analytics-queries'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 
-export default async function AnalyticsSummaryWidget() {
-  const payload = await getPayload({ config })
-  const summary7 = await getAnalyticsSummary(payload, 7)
-  const summary30 = await getAnalyticsSummary(payload, 30)
+export default async function AnalyticsSummaryWidget({ req }: WidgetServerProps) {
+  const summary7 = await getAnalyticsSummary(req.payload, 7)
+  const summary30 = await getAnalyticsSummary(req.payload, 30)
 
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className="card" style={{ padding: '1rem' }}>
       <h4 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 600 }}>
         Analytics Overview
       </h4>

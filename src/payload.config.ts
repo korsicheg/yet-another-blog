@@ -29,12 +29,32 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    components: {
-      beforeDashboard: [
-        './components/analytics/AnalyticsSummaryWidget',
-        './components/analytics/ViewsChartWidget',
-        './components/analytics/TopPagesWidget',
-        './components/analytics/TopCountriesWidget',
+    dashboard: {
+      widgets: [
+        {
+          slug: 'analytics-summary',
+          Component: './components/analytics/AnalyticsSummaryWidget#default',
+          minWidth: 'small',
+          maxWidth: 'medium',
+        },
+        {
+          slug: 'views-chart',
+          Component: './components/analytics/ViewsChartWidget#default',
+          minWidth: 'medium',
+          maxWidth: 'full',
+        },
+        {
+          slug: 'top-pages',
+          Component: './components/analytics/TopPagesWidget#default',
+          minWidth: 'small',
+          maxWidth: 'medium',
+        },
+        {
+          slug: 'top-countries',
+          Component: './components/analytics/TopCountriesWidget#default',
+          minWidth: 'small',
+          maxWidth: 'medium',
+        },
       ],
     },
   },
