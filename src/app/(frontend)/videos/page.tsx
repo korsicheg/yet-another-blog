@@ -3,6 +3,7 @@ import config from '@payload-config'
 import Link from 'next/link'
 import Image from 'next/image'
 import { getThumbnailUrl } from '@/lib/video'
+import { PageViewTracker } from '@/components/PageViewTracker'
 
 export const dynamic = 'force-dynamic'
 
@@ -25,6 +26,7 @@ export default async function VideosPage({
 
   return (
     <div>
+      <PageViewTracker path="/videos" collectionType="page" />
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Videos</h1>
       {videos.docs.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400">No videos yet. Check back soon!</p>

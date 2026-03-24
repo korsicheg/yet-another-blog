@@ -17,6 +17,7 @@ import { Posts } from './collections/Posts'
 import { Videos } from './collections/Videos'
 import { Media } from './collections/Media'
 import { Comments } from './collections/Comments'
+import { PageViews } from './collections/PageViews'
 import { About } from './globals/About'
 
 const filename = fileURLToPath(import.meta.url)
@@ -28,8 +29,16 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      beforeDashboard: [
+        './components/analytics/AnalyticsSummaryWidget',
+        './components/analytics/ViewsChartWidget',
+        './components/analytics/TopPagesWidget',
+        './components/analytics/TopCountriesWidget',
+      ],
+    },
   },
-  collections: [Users, Posts, Videos, Media, Comments],
+  collections: [Users, Posts, Videos, Media, Comments, PageViews],
   globals: [About],
   editor: lexicalEditor(),
   secret: requireEnv('PAYLOAD_SECRET'),

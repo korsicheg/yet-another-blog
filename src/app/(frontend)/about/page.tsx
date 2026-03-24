@@ -4,6 +4,7 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
 import type { Metadata } from 'next'
 import type { Media as MediaType } from '@/payload-types'
+import { PageViewTracker } from '@/components/PageViewTracker'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -22,6 +23,7 @@ export default async function AboutPage() {
 
   return (
     <div>
+      <PageViewTracker path="/about" collectionType="page" />
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">{about.heading || 'About Me'}</h1>
 
       {image?.url && (

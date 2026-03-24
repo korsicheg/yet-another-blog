@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 import type { Media as MediaType } from '@/payload-types'
 import { LikeButton } from '@/components/LikeButton'
 import { CommentsSection } from '@/components/CommentsSection'
+import { PageViewTracker } from '@/components/PageViewTracker'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -58,6 +59,7 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <article>
+      <PageViewTracker path={`/blog/${slug}`} collectionType="post" documentId={String(post.id)} />
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
       <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
         {post.publishedDate && (

@@ -3,6 +3,7 @@ import config from '@payload-config'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Media as MediaType } from '@/payload-types'
+import { PageViewTracker } from '@/components/PageViewTracker'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,6 +27,7 @@ export default async function BlogPage({
 
   return (
     <div>
+      <PageViewTracker path="/" collectionType="page" />
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Blog</h1>
       {posts.docs.length === 0 ? (
         <p className="text-gray-500 dark:text-gray-400">No posts yet. Check back soon!</p>
