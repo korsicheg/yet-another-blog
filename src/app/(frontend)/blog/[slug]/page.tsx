@@ -59,7 +59,7 @@ export default async function PostPage({ params }: Props) {
   return (
     <article>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
-      <div className="flex gap-4 text-sm text-gray-500 mb-6">
+      <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
         {post.publishedDate && (
           <time>{new Date(post.publishedDate).toLocaleDateString()}</time>
         )}
@@ -78,7 +78,7 @@ export default async function PostPage({ params }: Props) {
         />
       )}
 
-      <div className="prose prose-sm sm:prose-base prose-gray max-w-none">
+      <div className="prose prose-sm sm:prose-base prose-gray dark:prose-invert max-w-none">
         {post.content && <RichText data={post.content} />}
       </div>
 

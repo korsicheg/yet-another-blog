@@ -2,21 +2,9 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
 import Image from 'next/image'
+import { getThumbnailUrl } from '@/lib/video'
 
 export const dynamic = 'force-dynamic'
-
-function getYouTubeId(url: string): string | null {
-  const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)
-  return match ? match[1] : null
-}
-
-function getThumbnailUrl(videoUrl: string, platform: string | null | undefined): string | null {
-  if (platform === 'youtube') {
-    const id = getYouTubeId(videoUrl)
-    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null
-  }
-  return null
-}
 
 export default async function VideosPage({
   searchParams,
@@ -39,7 +27,7 @@ export default async function VideosPage({
     <div>
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Videos</h1>
       {videos.docs.length === 0 ? (
-        <p className="text-gray-500">No videos yet. Check back soon!</p>
+        <p className="text-gray-500 dark:text-gray-400">No videos yet. Check back soon!</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {videos.docs.map((video) => {
@@ -51,7 +39,7 @@ export default async function VideosPage({
                 href={`/videos/${video.slug}`}
                 className="group block"
               >
-                <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden mb-3">
+                <div className="aspect-video bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden mb-3">
                   {thumbnail ? (
                     <Image
                       src={thumbnail}
@@ -62,13 +50,13 @@ export default async function VideosPage({
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
                       Video
                     </div>
                   )}
                 </div>
                 <h2 className="font-semibold group-hover:underline">{video.title}</h2>
-                <div className="flex gap-4 mt-1 text-sm text-gray-500">
+                <div className="flex gap-4 mt-1 text-sm text-gray-500 dark:text-gray-400">
                   {video.publishedDate && (
                     <span>{new Date(video.publishedDate).toLocaleDateString()}</span>
                   )}
@@ -85,7 +73,7 @@ export default async function VideosPage({
           {videos.hasPrevPage && (
             <Link
               href={`/videos?page=${videos.prevPage}`}
-              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
+              className="px-5 py-3 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 text-sm min-h-[44px] flex items-center"
             >
               Previous
             </Link>
@@ -93,7 +81,7 @@ export default async function VideosPage({
           {videos.hasNextPage && (
             <Link
               href={`/videos?page=${videos.nextPage}`}
-              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
+              className="px-5 py-3 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-50 dark:hover:bg-gray-800 text-sm min-h-[44px] flex items-center"
             >
               Next
             </Link>

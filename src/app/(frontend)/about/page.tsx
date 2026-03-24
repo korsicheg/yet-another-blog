@@ -37,7 +37,7 @@ export default async function AboutPage() {
       )}
 
       {about.content && (
-        <div className="prose prose-sm sm:prose-base prose-gray max-w-none">
+        <div className="prose prose-sm sm:prose-base prose-gray dark:prose-invert max-w-none">
           <RichText data={about.content} />
         </div>
       )}

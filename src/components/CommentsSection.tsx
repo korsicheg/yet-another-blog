@@ -83,20 +83,20 @@ export function CommentsSection({
   }
 
   return (
-    <section className="mt-8 sm:mt-12 border-t border-gray-200 pt-6 sm:pt-8">
+    <section className="mt-8 sm:mt-12 border-t border-gray-200 dark:border-gray-800 pt-6 sm:pt-8">
       <h2 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6">Comments</h2>
 
       {comments.length > 0 ? (
         <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
           {comments.map((comment) => (
-            <div key={comment.id} className="border-b border-gray-100 pb-3 sm:pb-4">
+            <div key={comment.id} className="border-b border-gray-100 dark:border-gray-800 pb-3 sm:pb-4">
               <div className="flex items-center gap-2 mb-1">
                 <span className="font-medium text-sm">{comment.authorName}</span>
-                <span className="text-xs text-gray-400">
+                <span className="text-xs text-gray-400 dark:text-gray-500">
                   {new Date(comment.createdAt).toLocaleDateString()}
                 </span>
               </div>
-              <p className="text-gray-700 text-sm whitespace-pre-line">{comment.content}</p>
+              <p className="text-gray-700 dark:text-gray-300 text-sm whitespace-pre-line">{comment.content}</p>
             </div>
           ))}
 
@@ -104,23 +104,23 @@ export function CommentsSection({
             <button
               onClick={handleLoadMore}
               disabled={loadingMore}
-              className="w-full py-3 text-sm text-gray-600 border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-60 transition-colors min-h-[44px]"
+              className="w-full py-3 text-sm text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-60 transition-colors min-h-[44px]"
             >
               {loadingMore ? 'Loading...' : 'Load more comments'}
             </button>
           )}
         </div>
       ) : (
-        <p className="text-gray-500 text-sm mb-6 sm:mb-8">No comments yet. Be the first!</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 sm:mb-8">No comments yet. Be the first!</p>
       )}
 
       {submitted ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-sm text-green-800">
+        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 text-sm text-green-800 dark:text-green-300">
           Thank you! Your comment has been submitted and is awaiting moderation.
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
-          <h3 className="text-sm font-medium text-gray-700">Leave a comment</h3>
+          <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Leave a comment</h3>
           <input
             type="text"
             placeholder="Your name"
@@ -128,7 +128,7 @@ export function CommentsSection({
             onChange={(e) => setAuthorName(e.target.value)}
             maxLength={100}
             required
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 min-h-[44px]"
+            className="w-full px-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 min-h-[44px]"
           />
           <textarea
             placeholder="Your comment..."
@@ -137,13 +137,13 @@ export function CommentsSection({
             maxLength={2000}
             required
             rows={3}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-200 resize-vertical"
+            className="w-full px-3 py-3 border border-gray-300 dark:border-gray-700 rounded-lg text-sm bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700 resize-vertical"
           />
-          {error && <p className="text-red-600 text-sm">{error}</p>}
+          {error && <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>}
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-3 bg-black text-white rounded-lg text-sm hover:bg-gray-800 disabled:opacity-60 disabled:cursor-not-allowed transition-colors min-h-[44px]"
+            className="px-5 py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg text-sm hover:bg-gray-800 dark:hover:bg-gray-200 disabled:opacity-60 disabled:cursor-not-allowed transition-colors min-h-[44px]"
           >
             {submitting ? 'Submitting...' : 'Submit Comment'}
           </button>

@@ -45,7 +45,7 @@ export function LikeButton({
     <button
       onClick={handleLike}
       disabled={liked || loading}
-      className="flex items-center gap-2 mt-8 px-5 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-60 disabled:cursor-not-allowed transition-colors text-sm min-h-[44px]"
+      className="flex items-center gap-2 mt-8 px-5 py-3 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-60 disabled:cursor-not-allowed transition-colors text-sm min-h-[44px]"
     >
       <span className="text-lg">{liked ? '\u2665' : '\u2661'}</span>
       <span>{likes}</span>

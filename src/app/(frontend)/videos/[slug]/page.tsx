@@ -4,21 +4,10 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { LikeButton } from '@/components/LikeButton'
 import { CommentsSection } from '@/components/CommentsSection'
+import { getEmbedUrl } from '@/lib/video'
 
 type Props = {
   params: Promise<{ slug: string }>
-}
-
-function getEmbedUrl(videoUrl: string, platform: string | null | undefined): string {
-  if (platform === 'youtube') {
-    const match = videoUrl.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/)
-    return match ? `https://www.youtube.com/embed/${match[1]}` : videoUrl
-  }
-  if (platform === 'vimeo') {
-    const match = videoUrl.match(/vimeo\.com\/(\d+)/)
-    return match ? `https://player.vimeo.com/video/${match[1]}` : videoUrl
-  }
-  return videoUrl
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -67,7 +56,7 @@ export default async function VideoPage({ params }: Props) {
   return (
     <div>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{video.title}</h1>
-      <div className="flex gap-4 text-sm text-gray-500 mb-6">
+      <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
         {video.publishedDate && (
           <time>{new Date(video.publishedDate).toLocaleDateString()}</time>
         )}
@@ -85,7 +74,7 @@ export default async function VideoPage({ params }: Props) {
       </div>
 
       {video.description && (
-        <p className="text-gray-700 mb-6 whitespace-pre-line">{video.description}</p>
+        <p className="text-gray-700 dark:text-gray-300 mb-6 whitespace-pre-line">{video.description}</p>
       )}
 
       <LikeButton collection="videos" docId={String(video.id)} initialLikes={video.likes ?? 0} />
