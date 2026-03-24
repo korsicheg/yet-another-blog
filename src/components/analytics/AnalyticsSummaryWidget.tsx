@@ -11,7 +11,7 @@ export default async function AnalyticsSummaryWidget({ req }: WidgetServerProps)
   const visitorsData = daily7.map((d) => ({ value: d.uniqueVisitors }))
 
   return (
-    <div className="card" style={{ padding: '1rem', minHeight: 180 }}>
+    <div className="card" style={{ padding: '1rem' }}>
       <h4 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 600 }}>
         Analytics Overview
       </h4>

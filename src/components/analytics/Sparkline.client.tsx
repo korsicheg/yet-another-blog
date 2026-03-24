@@ -10,7 +10,7 @@ export function Sparkline({
   color: string
 }) {
   return (
-    <div style={{ width: '100%', height: 40 }}>
+    <div style={{ width: '100%', height: 61 }}>
       <ResponsiveContainer>
         <AreaChart data={data}>
           <Area
