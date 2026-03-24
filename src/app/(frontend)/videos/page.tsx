@@ -37,7 +37,7 @@ export default async function VideosPage({
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Videos</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Videos</h1>
       {videos.docs.length === 0 ? (
         <p className="text-gray-500">No videos yet. Check back soon!</p>
       ) : (
@@ -58,6 +58,7 @@ export default async function VideosPage({
                       alt={video.title}
                       width={768}
                       height={432}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 448px"
                       className="object-cover w-full h-full group-hover:scale-105 transition-transform"
                     />
                   ) : (
@@ -84,7 +85,7 @@ export default async function VideosPage({
           {videos.hasPrevPage && (
             <Link
               href={`/videos?page=${videos.prevPage}`}
-              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm"
+              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
             >
               Previous
             </Link>
@@ -92,7 +93,7 @@ export default async function VideosPage({
           {videos.hasNextPage && (
             <Link
               href={`/videos?page=${videos.nextPage}`}
-              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm"
+              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
             >
               Next
             </Link>

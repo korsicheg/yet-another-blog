@@ -39,7 +39,10 @@ export async function POST(req: NextRequest) {
       data: { likes: newLikes },
     })
 
-    return NextResponse.json({ success: true, likes: newLikes })
+    return NextResponse.json(
+      { success: true, likes: newLikes },
+      { headers: { 'Cache-Control': 'no-store' } },
+    )
   } catch {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }

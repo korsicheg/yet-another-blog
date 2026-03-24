@@ -19,6 +19,12 @@ export const Media: CollectionConfig = {
         position: 'centre',
       },
       {
+        name: 'mobile',
+        width: 480,
+        height: undefined,
+        position: 'centre',
+      },
+      {
         name: 'card',
         width: 768,
         height: 512,

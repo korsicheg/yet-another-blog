@@ -61,12 +61,12 @@ export default async function VideoPage({ params }: Props) {
       approved: { equals: true },
     },
     sort: '-createdAt',
-    limit: 100,
+    limit: 20,
   })
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-4">{video.title}</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{video.title}</h1>
       <div className="flex gap-4 text-sm text-gray-500 mb-6">
         {video.publishedDate && (
           <time>{new Date(video.publishedDate).toLocaleDateString()}</time>
@@ -93,6 +93,7 @@ export default async function VideoPage({ params }: Props) {
       <CommentsSection
         collection="videos"
         docId={String(video.id)}
+        totalComments={comments.totalDocs}
         initialComments={comments.docs.map((c) => ({
           id: String(c.id),
           authorName: c.authorName,

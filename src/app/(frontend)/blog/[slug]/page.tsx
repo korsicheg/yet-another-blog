@@ -37,7 +37,7 @@ export default async function PostPage({ params }: Props) {
     collection: 'posts',
     where: { slug: { equals: slug }, status: { equals: 'published' } },
     limit: 1,
-    depth: 2,
+    depth: 1,
   })
 
   const post = docs[0]
@@ -51,14 +51,14 @@ export default async function PostPage({ params }: Props) {
       approved: { equals: true },
     },
     sort: '-createdAt',
-    limit: 100,
+    limit: 20,
   })
 
   const image = post.featuredImage as MediaType | undefined
 
   return (
     <article>
-      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
       <div className="flex gap-4 text-sm text-gray-500 mb-6">
         {post.publishedDate && (
           <time>{new Date(post.publishedDate).toLocaleDateString()}</time>
@@ -72,11 +72,13 @@ export default async function PostPage({ params }: Props) {
           alt={image.alt || post.title}
           width={1920}
           height={1080}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 896px"
+          priority
           className="rounded-lg mb-8 w-full"
         />
       )}
 
-      <div className="prose prose-gray max-w-none">
+      <div className="prose prose-sm sm:prose-base prose-gray max-w-none">
         {post.content && <RichText data={post.content} />}
       </div>
 
@@ -85,6 +87,7 @@ export default async function PostPage({ params }: Props) {
       <CommentsSection
         collection="posts"
         docId={String(post.id)}
+        totalComments={comments.totalDocs}
         initialComments={comments.docs.map((c) => ({
           id: String(c.id),
           authorName: c.authorName,

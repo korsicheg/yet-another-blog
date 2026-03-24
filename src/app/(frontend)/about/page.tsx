@@ -22,7 +22,7 @@ export default async function AboutPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">{about.heading || 'About Me'}</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">{about.heading || 'About Me'}</h1>
 
       {image?.url && (
         <Image
@@ -30,12 +30,14 @@ export default async function AboutPage() {
           alt={image.alt || 'Profile'}
           width={300}
           height={300}
-          className="rounded-full mb-8"
+          sizes="(max-width: 640px) 150px, 300px"
+          priority
+          className="rounded-full mb-8 w-[150px] h-[150px] sm:w-[300px] sm:h-[300px]"
         />
       )}
 
       {about.content && (
-        <div className="prose prose-gray max-w-none">
+        <div className="prose prose-sm sm:prose-base prose-gray max-w-none">
           <RichText data={about.content} />
         </div>
       )}

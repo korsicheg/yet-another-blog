@@ -26,11 +26,11 @@ export default async function BlogPage({
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8">Blog</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Blog</h1>
       {posts.docs.length === 0 ? (
         <p className="text-gray-500">No posts yet. Check back soon!</p>
       ) : (
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {posts.docs.map((post) => {
             const image = post.featuredImage as MediaType | undefined
 
@@ -43,12 +43,13 @@ export default async function BlogPage({
                       alt={image.alt || post.title}
                       width={768}
                       height={320}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 768px, 768px"
                       className="rounded-lg mb-4 w-full"
                     />
                   </Link>
                 )}
                 <Link href={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-semibold hover:underline">{post.title}</h2>
+                  <h2 className="text-xl sm:text-2xl font-semibold hover:underline">{post.title}</h2>
                 </Link>
                 {post.excerpt && <p className="text-gray-600 mt-2">{post.excerpt}</p>}
                 <div className="flex gap-4 mt-2 text-sm text-gray-500">
@@ -68,7 +69,7 @@ export default async function BlogPage({
           {posts.hasPrevPage && (
             <Link
               href={`/?page=${posts.prevPage}`}
-              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm"
+              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
             >
               Previous
             </Link>
@@ -76,7 +77,7 @@ export default async function BlogPage({
           {posts.hasNextPage && (
             <Link
               href={`/?page=${posts.nextPage}`}
-              className="px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 text-sm"
+              className="px-5 py-3 border border-gray-300 rounded hover:bg-gray-50 text-sm min-h-[44px] flex items-center"
             >
               Next
             </Link>
